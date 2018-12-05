@@ -9,8 +9,8 @@ These problems illustrate concepts that previous problems have not emphasized:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Valerie Galluzzi, Mark Hays, Amanda Stouder, Aaron Wilkin,
-         their colleagues, and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues, and Jingyi. Jia.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 import testing_helper
@@ -98,12 +98,16 @@ def run_test_problem0a():
     print('--------------------------------------------------')
 
     format_string = '    problem0a( {} )'
+
+
     test_results = [0, 0]  # Number of tests passed, failed.
+
+
 
     # Test 1:
     expected = False
     print_expected_result_of_test([83135], expected, test_results,
-                                  format_string)
+                                format_string)
     actual = problem0a(83135)  # Run the code to test
     print_actual_result_of_test(expected, actual, test_results)
     if actual == 'False':
@@ -174,7 +178,15 @@ def run_test_problem0a():
 
 
 def problem0a(n):
-    """
+    int(n)
+
+    if sum_of_digits(n) % 2 == 0:
+        return False
+    elif sum_of_digits(n) % 2 != 0:
+        return True
+
+
+"""
     What comes in:  An integer.
     What goes out:
       -- Returns True if the sum of the digits in the given integer
@@ -245,8 +257,18 @@ def run_test_problem0b():
     print_summary_of_test_results(test_results)
 
 
+
+
 def problem0b(n):
-    """
+    count = 0
+    for k in range(n-1):
+        if is_prime(k+2) is True:
+            count = count + 1
+    return count
+
+
+
+"""
     What comes in:  An integer n >= 2.
     What goes out:
       -- Returns the number of integers from 2 to n, inclusive,
