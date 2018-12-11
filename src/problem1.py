@@ -408,7 +408,7 @@ else:
 # Calls  main  to start the ball rolling.
 # The   try .. except   prevents error messages on the console from being
 # intermingled with ordinary output to the console.
-# -----------------------------------------------------------------------------
+#  -----------------------------------------------------------------------------
 try:
     main()
 except Exception:
