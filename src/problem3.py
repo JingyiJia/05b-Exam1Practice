@@ -3,8 +3,8 @@ PRACTICE Exam 1, problem 3.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Valerie Galluzzi, Mark Hays, Amanda Stouder, Aaron Wilkin,
-         their colleagues, and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues, and Jingyi. Jia.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -38,7 +38,7 @@ def main():
 def run_test_problem3a():
     """ Tests the   problem3a   function. """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  problem1a  function defined below.
     #   Include at least **   5   ** tests (we wrote four for you).
     # -------------------------------------------------------------------------
@@ -75,7 +75,7 @@ def run_test_problem3a():
     print('       actual:  ', answer)
 
     # Test 3 (it is also on window 2):
-    point = rg.Point(30, 50)
+    point = rg.Point(60, 50)
     expected = 9
     answer = problem3a(window2, point, 3)
     print()
@@ -89,11 +89,19 @@ def run_test_problem3a():
     window3 = rg.RoseWindow(450, 300, title)
 
     # Test 4 (it is on window 3):
-    point = rg.Point(30, 30)
+    point = rg.Point(35, 30)
     expected = 218
     answer = problem3a(window3, point, 20)
     print()
     print('Test 4 expected:', expected)
+    print('       actual:  ', answer)
+
+    # Test 5 (it is on window 3):
+    point = rg.Point(40, 60)
+    expected = 218
+    answer = problem3a(window3, point, 20)
+    print()
+    print('Test 5 expected:', expected)
     print('       actual:  ', answer)
 
     window3.close_on_mouse_click()
@@ -138,7 +146,7 @@ def problem3a(window, point, n):
         :type n:      int
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
@@ -147,6 +155,19 @@ def problem3a(window, point, n):
     #    TIME ESTIMATE:   20 to 35 minutes.
     # -------------------------------------------------------------------------
 
+    sum = 0
+    for k in range(n):
+        start_point = rg.Point(point.x + 20 * k, point.y + 10 * k)
+        end_point = rg.Point(point.x + 20 * k, point.y + 10 * k + 50)
+        line = rg.Line(start_point, end_point)
+        if k < 7:
+            line.thickness = 1 + 2 * k
+        else:
+            line.thickness = 13
+        line.attach_to(window)
+        sum = sum + line.thickness
+    window.render()
+    return sum
 
 def run_test_problem3b():
     """ Tests the   problem3b   function. """
@@ -162,6 +183,34 @@ def run_test_problem3b():
     answer = problem3b(7, rg.Point(30, 30))
     print()
     print('Test 2 expected:', expected)
+    print('       actual:  ', answer)
+
+    # Window 3:
+    title = 'Problem 3a. Test 4: Start at (30, 30), 20 lines'
+    window3 = rg.RoseWindow(450, 300, title)
+
+    # Test 3 (it is on window 3):
+    point = rg.Point(35, 35)
+    expected = 248
+    answer = problem3a(window3, point, 20)
+    print()
+    print('Test 4 expected:', expected)
+    print('       actual:  ', answer)
+
+    # Test 4 (it is on window 3):
+    point = rg.Point(30, 30)
+    expected = 218
+    answer = problem3a(window3, point, 20)
+    print()
+    print('Test 4 expected:', expected)
+    print('       actual:  ', answer)
+
+    # Test 5 (it is on window 3):
+    point = rg.Point(100, 10)
+    expected = 9
+    answer = problem3a(window3, point, 3)
+    print()
+    print('Test 5 expected:', expected)
     print('       actual:  ', answer)
 
 
@@ -202,7 +251,7 @@ def problem3b(m, point1):
         :type point1: rg.Point
     """
     # -------------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ###########################################################################
@@ -215,7 +264,18 @@ def problem3b(m, point1):
     #    DIFFICULTY:      8 or 9
     #    TIME ESTIMATE:   20 to 30 minutes.
     # -------------------------------------------------------------------------
-
+    window = rg.RoseWindow(400, 650)
+    sum = 0
+    for k in range(m):
+        point_y = point1.y + 60 * k
+        point = rg.Point(point1.x, point_y)
+        problem3a(window, point, 2 * k + 3)
+        if k < 3:
+            sum = sum + (2 * k + 3) ** 2
+        else:
+            sum = sum + 49 + 2 * (k - 2) * 13
+    window.close_on_mouse_click()
+    return sum
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
